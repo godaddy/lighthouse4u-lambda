@@ -38,7 +38,8 @@ region.
 * Create a [S3 Bucket](https://s3.console.aws.amazon.com/s3/home). Name it what you like, such as `lh4u`.
   No other steps are required on the bucket unless you wish to auto-delete older objects via
   Lifecycle Management.
-* Create a [Lambda Function](https://console.aws.amazon.com/lambda/home). Name it what you like, such as
+* Create a [Lambda Function](https://console.aws.amazon.com/lambda/home). `1.5GB` is recommended for optimal
+  reliability. Name it what you like, such as
   `lighthouse4u-lambda`. Don't worry about deployment yet, just getting the shell in place.
 * Attach your SQS queue to your Lambda via Trigger in your Lambda settings. This will forward any SQS
   messages to your Lambda.
