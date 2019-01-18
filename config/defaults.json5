@@ -1,0 +1,19 @@
+{
+  lambda: {
+    //mount: '/lh4u'
+  },
+  store: {
+    module: 'lighthouse4u-s3',
+    options: { 
+      region: 'us-east-1',
+      bucket: 'MY_S3_BUCKET'
+    }
+  },
+  queue: {
+    module: 'lighthouse4u-sqs',
+    options: {
+      region: 'us-east-1',
+      queueUrl: 'MY_SQS_URL'
+    }
+  }
+}

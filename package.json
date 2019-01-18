@@ -1,0 +1,36 @@
+{
+  "name": "lighthouse4u-lambda",
+  "version": "0.1.0",
+  "description": "AWS Lambda for Lighthouse4u",
+  "main": "index.js",
+  "engines": {
+    "node": "8.10.x"
+  },
+  "scripts": {
+    "build:install": "docker run --rm -v \"$PWD\":/var/task lambci/lambda:build-nodejs8.10 bash -c \"npm i -g npm && rm -rf node_modules && npm install --no-optional --no-save --only=prod --build-from-source --verbose\"",
+    "build:zip": "docker run --rm -v \"$PWD\":/var/task lambci/lambda:build-nodejs8.10 bash -c \"rm -f *.zip && zip lighthouse4u-lambda.zip -r config lib node_modules index.js scripts package.json\"",
+    "build": "npm run build:install && npm run build:zip",
+    "test": "docker run --rm -v \"$PWD\":/var/task lambci/lambda:nodejs8.10 index.handler '{\"Records\":[{\"body\":\"{\\\"requestedUrl\\\":\\\"https://raw1.godaddysites.com\\\"}\"}]}'",
+    "test:root": "docker run --rm -v \"$PWD\":/var/task --user root lambci/lambda:nodejs8.10 index.handler '{\"Records\":[{\"body\":\"{\\\"requestedUrl\\\":\\\"https://raw1.godaddysites.com\\\"}\"}]}'",
+    "deploy": "npm run deploy:local-to-s3 && npm run deploy:s3-to-lambda",
+    "deploy:local-to-s3": "aws s3 cp lighthouse4u-lambda.zip s3://DEPLOYMENT_BUCKET/deploy/lighthouse4u-lambda.zip",
+    "deploy:s3-to-lambda": "aws lambda update-function-code --function-name LAMBDA_FUNCTION --s3-bucket DEPLOYMENT_BUCKET --s3-key deploy/lighthouse4u-lambda.zip --publish",
+    "start": "node index.js",
+    "config": "node ./scripts/configure.js",
+    "deconfig": "node ./scripts/deconfigure.js",
+    "local-test": "node scripts/run-test"
+  },
+  "author": "GoDaddy.com Operating Company LLC",
+  "license": "MIT",
+  "dependencies": {
+    "@serverless-chrome/lambda": "^1.0.0-55",
+    "aws-serverless-express": "^3.3.5",
+    "express": "^4.16.4",
+    "lighthouse4u": "^1.0.0",
+    "lighthouse4u-s3": "^1.0.0",
+    "lighthouse4u-sqs": "^1.0.0"
+  },
+  "devDependencies": {
+    "chrome-launcher": "^0.10.5"
+  }
+}
