@@ -9,7 +9,7 @@ This is a sample project that can be cloned or forked to bring the power of
 
 Designed to be as simple as possible and embrace the serverless model, pay only for what you use, with near limitless scale.
 
-Only AWS services required are:
+AWS services required:
 
 * Lambda - A single Lambda will be able to run Google Lighthouse jobs and supporting the Lighthouse4u
   UI+API. The consolidation is to keep things simple and reduce chance of cold starts, but can
@@ -22,9 +22,9 @@ Only AWS services required are:
 
 ## Prerequisites
 
-* Need an AWS Account
-* Need AWS CLI installed locally, and configured to point to your AWS Account
-* Need Docker installed locally
+* AWS Account
+* AWS CLI installed locally, and configured to point to your AWS Account
+* Docker installed locally
 * Clone (or fork) this repo
 
 
