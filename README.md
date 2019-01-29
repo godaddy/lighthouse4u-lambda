@@ -7,6 +7,8 @@ This is a sample project that can be cloned or forked to bring the power of
 
 ## Architecture
 
+![Architecture](./docs/arch.jpg)
+
 Designed to be as simple as possible and embrace the serverless model, pay only for what you use, with near limitless scale.
 
 AWS services required:
