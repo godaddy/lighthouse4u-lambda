@@ -18,7 +18,9 @@
     "start": "node index.js",
     "config": "node ./scripts/configure.js",
     "deconfig": "node ./scripts/deconfigure.js",
-    "local-test": "node scripts/run-test"
+    "local-test": "node scripts/run-test",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "author": "GoDaddy.com Operating Company LLC",
   "license": "MIT",
@@ -28,9 +30,11 @@
     "express": "^4.16.4",
     "lighthouse4u": "^1.0.0",
     "lighthouse4u-s3": "^1.0.0",
-    "lighthouse4u-sqs": "^1.0.0"
+    "lighthouse4u-sqs": "^1.0.0",
+    "snyk": "^1.189.0"
   },
   "devDependencies": {
     "chrome-launcher": "^0.10.5"
-  }
+  },
+  "snyk": true
 }
